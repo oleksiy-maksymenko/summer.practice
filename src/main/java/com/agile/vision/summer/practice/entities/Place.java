@@ -2,9 +2,7 @@ package com.agile.vision.summer.practice.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,7 +10,10 @@ import java.util.Set;
 @Entity(name = "working_place")
 @Data
 @NoArgsConstructor
+@Table
 @AllArgsConstructor
+@EqualsAndHashCode(exclude = {"monitors","pc"})
+@ToString(exclude = {"monitors","pc"})
 public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,7 +33,7 @@ public class Place {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private Set<Monitor> comments;
+    private Set<Monitor> monitors;
     @OneToOne(
             mappedBy = "place",
             cascade = CascadeType.ALL,
@@ -40,4 +41,10 @@ public class Place {
             fetch = FetchType.LAZY
     )
     private PC pc;
+
+    @Override
+    public String toString(){
+        return name;
+    }
+
 }

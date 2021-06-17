@@ -4,6 +4,7 @@ package com.agile.vision.summer.practice.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "pc")
+@EqualsAndHashCode(exclude = "place")
 public class PC {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,11 +35,11 @@ public class PC {
     @Column(name = "cpu_count")
     private Integer cpuCount;
 
-    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private Place place;
 
+    @Override
     public String toString() {
         return id.toString();
     }
