@@ -10,6 +10,7 @@ import java.util.Set;
 @Entity(name = "working_place")
 @Data
 @NoArgsConstructor
+@Builder
 @Table
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = {"monitors","pc"})
@@ -41,10 +42,4 @@ public class Place {
             fetch = FetchType.LAZY
     )
     private PC pc;
-
-    @Override
-    public String toString(){
-        return name;
-    }
-
 }
