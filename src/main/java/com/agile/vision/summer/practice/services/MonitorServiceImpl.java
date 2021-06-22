@@ -2,6 +2,7 @@ package com.agile.vision.summer.practice.services;
 
 import com.agile.vision.summer.practice.entities.Monitor;
 import com.agile.vision.summer.practice.repositories.MonitorRepository;
+import com.agile.vision.summer.practice.services.exception.NonExistingIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class MonitorServiceImpl implements MonitorService {
         if (optional.isPresent()) {
             return optional.get();
         }
-        throw new IllegalArgumentException();
+        throw new NonExistingIdException();
     }
 
     @Override

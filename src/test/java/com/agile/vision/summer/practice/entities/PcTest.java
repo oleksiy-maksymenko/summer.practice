@@ -1,9 +1,6 @@
-package com.agile.vision.summer.practice.entity;
+package com.agile.vision.summer.practice.entities;
 
-import com.agile.vision.summer.practice.entities.Monitor;
-import com.agile.vision.summer.practice.repositories.MonitorRepository;
 import com.agile.vision.summer.practice.repositories.PcRepository;
-import com.agile.vision.summer.practice.repositories.WorkingPlaceRepository;
 import com.github.database.rider.core.api.configuration.DBUnit;
 import com.github.database.rider.core.api.configuration.DataSetMergingStrategy;
 import com.github.database.rider.core.api.configuration.Orthography;
