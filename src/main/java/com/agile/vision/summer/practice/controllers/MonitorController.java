@@ -4,35 +4,43 @@ import com.agile.vision.summer.practice.entities.Monitor;
 import com.agile.vision.summer.practice.entities.PC;
 import com.agile.vision.summer.practice.services.MonitorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/monitor")
+@RequestMapping(value = "/monitor")
 public class MonitorController {
 
     @Autowired
     MonitorService monitorService;
 
-    @GetMapping("/")
-    public List<Monitor> getAll(){
-        return monitorService.getAll();
+    @GetMapping(value ="/")
+    public ResponseEntity<List<Monitor>> getAll() {
+        return new ResponseEntity<>(monitorService.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public Monitor getById(@PathVariable int id){
-        return monitorService.getById(id);
+    @GetMapping(value ="/{id}")
+    public ResponseEntity<Monitor> getById(@PathVariable int id) {
+        return new ResponseEntity<>(monitorService.getById(id), HttpStatus.OK);
     }
 
-    @PutMapping("/")
-    public boolean save(@RequestBody Monitor monitor){
-        return monitorService.save(monitor);
+    @PutMapping(value ="/")
+    public ResponseEntity<Boolean> save(@RequestBody Monitor monitor) {
+        if (monitorService.save(monitor)) {
+            return new ResponseEntity<>(true, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(false, HttpStatus.NOT_MODIFIED);
     }
 
-    @DeleteMapping("/{id}")
-    public boolean deleteById(@PathVariable int id){
-        return monitorService.deleteById(id);
+    @DeleteMapping(value ="/{id}")
+    public ResponseEntity<Boolean> deleteById(@PathVariable int id) {
+        if (monitorService.deleteById(id)) {
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(false, HttpStatus.NOT_MODIFIED);
     }
 
 }

@@ -12,6 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Table
+@ToString(exclude = "place")
 @EqualsAndHashCode(exclude = "place")
 public class Monitor {
     @Id
@@ -36,8 +37,4 @@ public class Monitor {
     @JoinColumn(name = "place_id")
     private Place place;
 
-    @Override
-    public String toString(){
-        return id.toString();
-    }
 }

@@ -13,6 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Table(name = "pc")
 @EqualsAndHashCode(exclude = "place")
+@ToString(exclude = "place")
 public class PC {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

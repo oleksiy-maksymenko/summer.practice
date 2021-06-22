@@ -30,11 +30,7 @@ public class MonitorServiceImpl implements MonitorService {
 
     @Override
     public boolean deleteById(int id) {
-        try {
-            monitorRepository.deleteById(id);
-        } catch (Exception e) {
-            return false;
-        }
+        monitorRepository.deleteById(id);
         return true;
     }
 
