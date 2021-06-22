@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class MonitorServiceImpl implements MonitorService {
 
+    private final MonitorRepository monitorRepository;
+
     @Autowired
-    private MonitorRepository monitorRepository;
+    public MonitorServiceImpl(MonitorRepository monitorRepository) {
+        this.monitorRepository = monitorRepository;
+    }
 
     @Override
     public Monitor getById(int id) {
@@ -31,14 +35,14 @@ public class MonitorServiceImpl implements MonitorService {
 
     @Override
     public boolean deleteById(int id) {
-        if (monitorRepository.existsById(id)) throw new NonExistingIdException();
+        if (!monitorRepository.existsById(id)) throw new NonExistingIdException();
         monitorRepository.deleteById(id);
         return true;
     }
 
     @Override
-    public boolean save(Monitor monitor) {
-        return monitorRepository.save(monitor) != null;
+    public Monitor save(Monitor monitor) {
+        return monitorRepository.save(monitor);
     }
 
     @Override

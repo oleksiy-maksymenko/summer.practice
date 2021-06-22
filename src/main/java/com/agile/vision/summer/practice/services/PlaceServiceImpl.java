@@ -16,8 +16,12 @@ import java.util.Optional;
 @Service
 public class PlaceServiceImpl implements PlaceService {
 
+    private final WorkingPlaceRepository workingPlaceRepository;
+
     @Autowired
-    private WorkingPlaceRepository workingPlaceRepository;
+    public PlaceServiceImpl(WorkingPlaceRepository workingPlaceRepository) {
+        this.workingPlaceRepository = workingPlaceRepository;
+    }
 
     @Override
     public Place getById(int id) {

@@ -11,7 +11,7 @@ public interface MonitorService {
 
     boolean deleteById(int id);
 
-    boolean save(Monitor monitor);
+    Monitor save(Monitor monitor);
 
     boolean deleteAllByPlaceIsNull();
 }
