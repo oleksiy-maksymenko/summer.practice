@@ -1,7 +1,6 @@
-package com.agile.vision.summer.practice.entity;
+package com.agile.vision.summer.practice.entities;
 
-
-import com.agile.vision.summer.practice.repositories.WorkingPlaceRepository;
+import com.agile.vision.summer.practice.repositories.MonitorRepository;
 import com.github.database.rider.core.api.configuration.DBUnit;
 import com.github.database.rider.core.api.configuration.DataSetMergingStrategy;
 import com.github.database.rider.core.api.configuration.Orthography;
@@ -24,16 +23,19 @@ import static org.assertj.core.api.Assertions.assertThat;
         mergeDataSets = true,
         mergingStrategy = DataSetMergingStrategy.CLASS)
 @DBRider
-public class PlaceTest {
+public class MonitorTest {
+
+
     @Autowired
-    WorkingPlaceRepository workingPlaceRepository;
+    MonitorRepository monitorRepository;
 
     @Test
     @DataSet(value = "test.yml")
     public void shouldSeedUserDataSet() {
-        assertThat(workingPlaceRepository).isNotNull();
-        assertThat(workingPlaceRepository.count()).isEqualTo(2);
-        assertThat(workingPlaceRepository.findById(1).get().getPc()).isNotNull();
-        workingPlaceRepository.delete(workingPlaceRepository.findById(1).get());
+        assertThat(monitorRepository).isNotNull();
+        assertThat(monitorRepository.count()).isEqualTo(2);
+        assertThat(monitorRepository.findById(1).get().getPlace()).isNotNull();
+        monitorRepository.delete(monitorRepository.findById(1).get());
     }
+
 }

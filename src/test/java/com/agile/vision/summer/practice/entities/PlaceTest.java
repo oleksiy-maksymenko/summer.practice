@@ -1,8 +1,7 @@
-package com.agile.vision.summer.practice.entity;
+package com.agile.vision.summer.practice.entities;
 
-import com.agile.vision.summer.practice.entities.Monitor;
-import com.agile.vision.summer.practice.repositories.MonitorRepository;
-import com.agile.vision.summer.practice.repositories.PcRepository;
+
+import com.agile.vision.summer.practice.repositories.WorkingPlaceRepository;
 import com.github.database.rider.core.api.configuration.DBUnit;
 import com.github.database.rider.core.api.configuration.DataSetMergingStrategy;
 import com.github.database.rider.core.api.configuration.Orthography;
@@ -25,19 +24,16 @@ import static org.assertj.core.api.Assertions.assertThat;
         mergeDataSets = true,
         mergingStrategy = DataSetMergingStrategy.CLASS)
 @DBRider
-public class MonitorTest {
-
-
+public class PlaceTest {
     @Autowired
-    MonitorRepository monitorRepository;
+    WorkingPlaceRepository workingPlaceRepository;
 
     @Test
     @DataSet(value = "test.yml")
     public void shouldSeedUserDataSet() {
-        assertThat(monitorRepository).isNotNull();
-        assertThat(monitorRepository.count()).isEqualTo(2);
-        assertThat(monitorRepository.findById(1).get().getPlace()).isNotNull();
-        monitorRepository.delete(monitorRepository.findById(1).get());
+        assertThat(workingPlaceRepository).isNotNull();
+        assertThat(workingPlaceRepository.count()).isEqualTo(2);
+        assertThat(workingPlaceRepository.findById(1).get().getPc()).isNotNull();
+        workingPlaceRepository.delete(workingPlaceRepository.findById(1).get());
     }
-
 }
