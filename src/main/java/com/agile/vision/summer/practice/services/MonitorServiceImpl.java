@@ -2,6 +2,7 @@ package com.agile.vision.summer.practice.services;
 
 import com.agile.vision.summer.practice.entities.Monitor;
 import com.agile.vision.summer.practice.repositories.MonitorRepository;
+import com.agile.vision.summer.practice.services.exception.NonExistingIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class MonitorServiceImpl implements MonitorService {
         if (optional.isPresent()) {
             return optional.get();
         }
-        throw new IllegalArgumentException();
+        throw new NonExistingIdException();
     }
 
     @Override
@@ -34,11 +35,8 @@ public class MonitorServiceImpl implements MonitorService {
 
     @Override
     public boolean deleteById(int id) {
-        try {
-            monitorRepository.deleteById(id);
-        } catch (Exception e) {
-            return false;
-        }
+        if (monitorRepository.existsById(id)) throw new NonExistingIdException();
+        monitorRepository.deleteById(id);
         return true;
     }
 
@@ -49,11 +47,7 @@ public class MonitorServiceImpl implements MonitorService {
 
     @Override
     public boolean deleteAllByPlaceIsNull() {
-        try {
-            monitorRepository.deleteAllByPlaceIsNull();
-        } catch (Exception e) {
-            return false;
-        }
+        monitorRepository.deleteAllByPlaceIsNull();
         return true;
     }
 }

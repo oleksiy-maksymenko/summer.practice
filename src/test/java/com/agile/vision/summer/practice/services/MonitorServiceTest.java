@@ -14,13 +14,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ActiveProfiles("test")
-@RunWith(MockitoJUnitRunner.class)
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
 public class MonitorServiceTest {
@@ -36,9 +36,7 @@ public class MonitorServiceTest {
     public void whenMonitorIdIsProvided_thenReturnCorrectUser() {
         Mockito.when(monitorRepository.getById(1)).thenReturn(Monitor.builder().id(1).createdBy("Oleksiy").build());
         String testId = monitorRepository.getById(1).getCreatedBy();
-        System.out.println(testId);
         String resultId = monitorService.getById(1).getCreatedBy();
-        System.out.println(resultId);
         assertEquals(resultId, testId);
     }
 
@@ -63,7 +61,7 @@ public class MonitorServiceTest {
         try {
             monitorRepository.getById(1);
         } catch (IllegalArgumentException e) {
-            System.err.println("Exception was thrown");
+            Logger.getLogger("Exception was thrown");
         }
     }
 

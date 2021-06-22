@@ -2,6 +2,7 @@ package com.agile.vision.summer.practice.services;
 
 import com.agile.vision.summer.practice.entities.PC;
 import com.agile.vision.summer.practice.repositories.PcRepository;
+import com.agile.vision.summer.practice.services.exception.NonExistingIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class PcServiceImpl implements PcService {
         if (optional.isPresent()) {
             return optional.get();
         }
-        throw new IllegalArgumentException();
+        throw new NonExistingIdException();
     }
 
     @Override
@@ -34,11 +35,8 @@ public class PcServiceImpl implements PcService {
 
     @Override
     public boolean deleteById(int id) {
-        try {
-            pcRepository.deleteById(id);
-        } catch (Exception e) {
-            return false;
-        }
+        if (pcRepository.existsById(id)) throw new NonExistingIdException();
+        pcRepository.deleteById(id);
         return true;
     }
 
@@ -49,11 +47,7 @@ public class PcServiceImpl implements PcService {
 
     @Override
     public boolean deleteAllByPlaceIsNull() {
-        try {
-            pcRepository.deleteAllByPlaceIsNull();
-        } catch (Exception e) {
-            return false;
-        }
+        pcRepository.deleteAllByPlaceIsNull();
         return true;
     }
 }
