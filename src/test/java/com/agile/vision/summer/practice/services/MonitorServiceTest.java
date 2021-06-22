@@ -1,9 +1,7 @@
-package com.agile.vision.summer.practice.service;
+package com.agile.vision.summer.practice.services;
 
 import com.agile.vision.summer.practice.entities.Monitor;
 import com.agile.vision.summer.practice.repositories.MonitorRepository;
-import com.agile.vision.summer.practice.services.MonitorService;
-import com.agile.vision.summer.practice.services.MonitorServiceImpl;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -18,7 +16,6 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -29,7 +26,8 @@ import static org.mockito.Mockito.verify;
 public class MonitorServiceTest {
 
     @InjectMocks
-    MonitorService monitorService = new MonitorServiceImpl();
+    MonitorService monitorService;
+
     @Mock
     private MonitorRepository monitorRepository = Mockito.mock(MonitorRepository.class);
 
@@ -70,14 +68,14 @@ public class MonitorServiceTest {
     }
 
     @Test
-    public void TestServiceUpdate() {
+    public void testServiceUpdate() {
         Monitor monitor = Monitor.builder().id(666).displaySize(24.7).build();
         monitorService.save(monitor);
         verify(monitorRepository, times(1)).save(monitor);
     }
 
     @Test
-    public void TestServiceDelete() {
+    public void testServiceDelete() {
         monitorService.deleteById(1);
         verify(monitorRepository, times(1)).deleteById(1);
     }

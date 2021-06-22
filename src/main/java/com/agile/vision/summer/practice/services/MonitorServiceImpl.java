@@ -11,8 +11,12 @@ import java.util.Optional;
 @Service
 public class MonitorServiceImpl implements MonitorService {
 
+    private final MonitorRepository monitorRepository;
+
     @Autowired
-    private MonitorRepository monitorRepository;
+    public MonitorServiceImpl(MonitorRepository monitorRepository) {
+        this.monitorRepository = monitorRepository;
+    }
 
     @Override
     public Monitor getById(int id) {

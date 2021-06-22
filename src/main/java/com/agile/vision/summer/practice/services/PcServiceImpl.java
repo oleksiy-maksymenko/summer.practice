@@ -11,8 +11,12 @@ import java.util.Optional;
 @Service
 public class PcServiceImpl implements PcService {
 
+    private final PcRepository pcRepository;
+
     @Autowired
-    private PcRepository pcRepository;
+    public PcServiceImpl(PcRepository pcRepository) {
+        this.pcRepository = pcRepository;
+    }
 
     @Override
     public PC getById(int id) {

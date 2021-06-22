@@ -1,14 +1,12 @@
-package com.agile.vision.summer.practice.service;
+package com.agile.vision.summer.practice.services;
 
-import com.agile.vision.summer.practice.entities.Monitor;
 import com.agile.vision.summer.practice.entities.PC;
-import com.agile.vision.summer.practice.repositories.MonitorRepository;
 import com.agile.vision.summer.practice.repositories.PcRepository;
-import com.agile.vision.summer.practice.services.PcService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -30,7 +28,7 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 public class PcServiceTest {
 
-    @Autowired
+    @InjectMocks
     PcService pcService;
 
     private PcRepository pcRepository = Mockito.mock(PcRepository.class);
