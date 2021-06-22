@@ -6,6 +6,7 @@ import com.agile.vision.summer.practice.entities.Place;
 import com.agile.vision.summer.practice.repositories.MonitorRepository;
 import com.agile.vision.summer.practice.repositories.PcRepository;
 import com.agile.vision.summer.practice.repositories.WorkingPlaceRepository;
+import com.agile.vision.summer.practice.services.exception.NonExistingIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +19,13 @@ public class PlaceServiceImpl implements PlaceService {
     @Autowired
     private WorkingPlaceRepository workingPlaceRepository;
 
-
     @Override
     public Place getById(int id) {
         Optional<Place> optional = workingPlaceRepository.findById(id);
         if (optional.isPresent()) {
             return optional.get();
         }
-        throw new IllegalArgumentException();
+        throw new NonExistingIdException();
     }
 
     @Override
@@ -35,11 +35,8 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Override
     public boolean deleteById(int id) {
-        try {
-            workingPlaceRepository.deleteById(id);
-        } catch (Exception e) {
-            return false;
-        }
+        if (workingPlaceRepository.existsById(id)) throw new NonExistingIdException();
+        workingPlaceRepository.deleteById(id);
         return true;
     }
 
@@ -50,11 +47,7 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Override
     public boolean deleteAllByPcNullOrMonitorsIsNull() {
-        try {
-            workingPlaceRepository.deleteAllByPcNullOrMonitorsIsNull();
-        } catch(Exception e){
-            return false;
-        }
+        workingPlaceRepository.deleteAllByPcNullOrMonitorsIsNull();
         return true;
     }
 }

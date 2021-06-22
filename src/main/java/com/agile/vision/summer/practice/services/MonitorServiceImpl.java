@@ -31,6 +31,7 @@ public class MonitorServiceImpl implements MonitorService {
 
     @Override
     public boolean deleteById(int id) {
+        if (monitorRepository.existsById(id)) throw new NonExistingIdException();
         monitorRepository.deleteById(id);
         return true;
     }
@@ -42,11 +43,7 @@ public class MonitorServiceImpl implements MonitorService {
 
     @Override
     public boolean deleteAllByPlaceIsNull() {
-        try {
-            monitorRepository.deleteAllByPlaceIsNull();
-        } catch (Exception e) {
-            return false;
-        }
+        monitorRepository.deleteAllByPlaceIsNull();
         return true;
     }
 }

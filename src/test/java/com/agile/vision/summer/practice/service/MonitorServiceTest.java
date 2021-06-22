@@ -24,12 +24,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+
+@ActiveProfiles("test")
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @ExtendWith(MockitoExtension.class)
@@ -62,7 +65,7 @@ public class MonitorServiceTest {
         try {
             monitorRepository.getById(1);
         } catch (IllegalArgumentException e) {
-            System.err.println("Exception was thrown");
+            Logger.getLogger("Exception was thrown");
         }
     }
 

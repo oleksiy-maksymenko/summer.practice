@@ -12,4 +12,8 @@ public class RestExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     public void handleNonExistingID() {}
 
+    @ExceptionHandler(NullPointerException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleNullPointer() {}
+
 }

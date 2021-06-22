@@ -23,9 +23,7 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
-
 @ActiveProfiles("test")
-@RunWith(SpringJUnit4ClassRunner.class)
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
 public class PcServiceTest {
@@ -44,9 +42,7 @@ public class PcServiceTest {
     public void whenPcIdIsProvided_thenReturnCorrectUser() {
         Mockito.when(pcRepository.getById(1)).thenReturn(Optional.of(PC.builder().id(1).createdBy("Oleksiy").build()));
         String testId = pcRepository.getById(1).get().getCreatedBy();
-        System.out.println(testId);
         String resultId = pcService.getById(1).getCreatedBy();
-        System.out.println(resultId);
         assertEquals(resultId, testId);
     }
 
