@@ -1,0 +1,59 @@
+public.working_place:
+  - id: 1
+    created_at: "today"
+    created_by: "Oleksiy"
+    updated_by: "Ivan"
+    updated_at: "today"
+    name: "wp-865"
+    city: "Chernigiv"
+  - id: 2
+    created_at: "today"
+    created_by: "Oleksiy"
+    updated_by: "Ivan"
+    updated_at: "today"
+    name: "wp-268"
+    city: "Chernigiv"
+public.monitor:
+  - id: 1
+    created_at: "today"
+    created_by: "Oleksiy"
+    updated_by: "Ivan"
+    updated_at: "today"
+    length: 50
+    height: 50
+    width: 50
+    display_size: 45
+    place_id: 1
+  - id: 2
+    created_at: "today"
+    created_by: "Oleksiy"
+    updated_by: "Ivan"
+    updated_at: "today"
+    length: 50
+    height: 100
+    width: 30
+    display_size: 45
+    place_id: 1
+public.pc:
+  - id: 1
+    created_at: "today"
+    created_by: "Oleksiy"
+    updated_by: "Ivan"
+    updated_at: "today"
+    length: 50
+    height: 50
+    width: 50
+    hdd_size: 50
+    cpu_count: 2
+    place_id: 1
+  - id: 2
+    created_at: "today"
+    created_by: "Oleksiy"
+    updated_by: "Ivan"
+    updated_at: "today"
+    length: 50
+    height: 100
+    width: 30
+    hdd_size: 120
+    cpu_count: 5
+    place_id: 2
