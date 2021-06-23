@@ -2,6 +2,7 @@ package com.agile.vision.summer.practice.services;
 
 import com.agile.vision.summer.practice.entities.Monitor;
 import com.agile.vision.summer.practice.repositories.MonitorRepository;
+import com.agile.vision.summer.practice.services.exception.NonExistingIdException;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -16,7 +17,7 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.*;
 import java.util.logging.Logger;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -26,7 +27,7 @@ import static org.mockito.Mockito.verify;
 public class MonitorServiceTest {
 
     @InjectMocks
-    MonitorService monitorService;
+    private MonitorService monitorService;
 
     @Mock
     private MonitorRepository monitorRepository = Mockito.mock(MonitorRepository.class);
@@ -57,12 +58,10 @@ public class MonitorServiceTest {
 
     @Test
     public void getById_catch_exception_Test() {
-        Mockito.doThrow(new IllegalArgumentException()).when(monitorRepository).getById(Mockito.eq(1));
-        try {
-            monitorRepository.getById(1);
-        } catch (IllegalArgumentException e) {
-            Logger.getLogger("Exception was thrown");
-        }
+        Mockito.doThrow(new NonExistingIdException()).when(monitorRepository).getById(Mockito.eq(1));
+        assertThrows(NonExistingIdException.class,()->{
+            monitorService.getById(4);
+        });
     }
 
     @Test

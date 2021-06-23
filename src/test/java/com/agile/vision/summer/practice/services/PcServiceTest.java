@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -22,14 +23,14 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 
 @ActiveProfiles("test")
-@ExtendWith(MockitoExtension.class)
 @SpringBootTest
 public class PcServiceTest {
 
     @InjectMocks
-    PcService pcService;
+    private PcService pcService;
 
-    private PcRepository pcRepository = Mockito.mock(PcRepository.class);
+    @Mock
+    private PcRepository pcRepository;
 
     @Before
     public void init() {
