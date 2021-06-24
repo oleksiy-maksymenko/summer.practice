@@ -41,8 +41,8 @@ public class PcServiceImpl implements PcService {
     }
 
     @Override
-    public boolean save(PC pc) {
-        return pcRepository.save(pc) != null;
+    public PC save(PC pc) {
+        return pcRepository.save(pc);
     }
 
     @Override

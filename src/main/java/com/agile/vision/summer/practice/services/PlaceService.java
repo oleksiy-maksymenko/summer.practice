@@ -11,7 +11,7 @@ public interface PlaceService {
 
     boolean deleteById(int id);
 
-    boolean save(Place place);
+    Place save(Place place);
 
     boolean deleteAllByPcNullOrMonitorsIsNull();
 }

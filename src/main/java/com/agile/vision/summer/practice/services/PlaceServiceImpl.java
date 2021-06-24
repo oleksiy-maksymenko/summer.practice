@@ -1,10 +1,6 @@
 package com.agile.vision.summer.practice.services;
 
-import com.agile.vision.summer.practice.entities.Monitor;
-import com.agile.vision.summer.practice.entities.PC;
 import com.agile.vision.summer.practice.entities.Place;
-import com.agile.vision.summer.practice.repositories.MonitorRepository;
-import com.agile.vision.summer.practice.repositories.PcRepository;
 import com.agile.vision.summer.practice.repositories.WorkingPlaceRepository;
 import com.agile.vision.summer.practice.services.exception.NonExistingIdException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +41,8 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public boolean save(Place place) {
-        return workingPlaceRepository.save(place) != null;
+    public Place save(Place place) {
+        return workingPlaceRepository.save(place);
     }
 
     @Override

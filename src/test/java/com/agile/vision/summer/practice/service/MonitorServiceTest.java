@@ -35,14 +35,13 @@ import static org.mockito.Mockito.verify;
 @ActiveProfiles("test")
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@ExtendWith(MockitoExtension.class)
 public class MonitorServiceTest {
 
     @Autowired
     MonitorService monitorService;
 
     @Mock
-    private MonitorRepository monitorRepository = Mockito.mock(MonitorRepository.class);
+    private MonitorRepository monitorRepository;
 
 
     @Test

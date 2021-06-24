@@ -12,7 +12,7 @@ public interface PcService {
 
     boolean deleteById(int id);
 
-    boolean save(PC pc);
+    PC save(PC pc);
 
     boolean deleteAllByPlaceIsNull();
 

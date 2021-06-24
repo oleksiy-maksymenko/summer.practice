@@ -4,6 +4,8 @@ import com.agile.vision.summer.practice.entities.PC;
 import com.agile.vision.summer.practice.entities.Place;
 import com.agile.vision.summer.practice.services.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,22 +18,29 @@ public class PlaceController {
     PlaceService placeService;
 
     @GetMapping(value = "/")
-    public List<Place> getAll() {
-        return placeService.getAll();
+    public  ResponseEntity<List<Place>> getAll() {
+        return new  ResponseEntity<>(placeService.getAll(),HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
-    public Place getById(@PathVariable int id) {
-        return placeService.getById(id);
+    public  ResponseEntity<Place> getById(@PathVariable int id) {
+        return new ResponseEntity<>(placeService.getById(id), HttpStatus.OK);
     }
 
     @PutMapping(value = "/")
-    public boolean save(@RequestBody Place place) {
-        return placeService.save(place);
+    public ResponseEntity<Place> save(@RequestBody Place place) {
+        Place placeSaved = placeService.save(place);
+        if (placeService.save(place) != null) {
+            return new ResponseEntity<>(placeSaved, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping(value = "/{id}")
-    public boolean deleteById(@PathVariable int id) {
-        return placeService.deleteById(id);
+    public ResponseEntity<Boolean> deleteById(@PathVariable int id) {
+        if (placeService.deleteById(id)) {
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
     }
 }
