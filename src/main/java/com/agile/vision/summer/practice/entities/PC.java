@@ -2,19 +2,18 @@ package com.agile.vision.summer.practice.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 @Table(name = "pc")
 @EqualsAndHashCode(exclude = "place")
+@ToString(exclude = "place")
 public class PC {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,11 +37,6 @@ public class PC {
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private Place place;
-
-    @Override
-    public String toString() {
-        return id.toString();
-    }
 
 }
 
